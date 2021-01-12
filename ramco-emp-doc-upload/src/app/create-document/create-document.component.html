@@ -1,0 +1,74 @@
+
+<tabset (click)="confirmTabSwitch($event)" #tabset>
+  <tab
+    tab1
+    heading="Upload Document"
+    id="first"
+    #first
+    [disabled]="disableSwitching"
+    >
+<div class="container">
+    <div class="alert alert-success text-center" role="alert" *ngIf="isUserAdded">
+      Document has been uploaded successfully
+    </div>
+  <div class="row">
+
+    <form [formGroup]="form" (ngSubmit)="submitForm()">
+
+      <!-- Progress Bar -->
+      <div class="progress form-group" *ngIf="fileUploadService.percentDone">
+        <div class="progress-bar progress-bar-striped bg-success" role="progressbar"
+          [style.width.%]="fileUploadService.percentDone">
+        </div>
+      </div>
+
+      <!-- File Input -->
+      <div class="form-group">
+        <input type="file" (change)="uploadFile($event)">
+      </div>
+
+      <!-- Document Preview -->
+      <div class="form-group">
+        <div class="preview" *ngIf="preview && preview !== null">
+          <img [src]="preview" [alt]="form.value.name">
+        </div>
+      </div>
+      <!-- Name -->
+      <div class="form-group input-group-lg">
+        <input class="form-control" placeholder="Employee Name" formControlName="name">
+        <div class="tag-input">
+          <tag-input [(ngModel)]="selectedTagItems"
+                      [identifyBy]="'title'"
+                      [displayBy]="'title'"
+                      formControlName="tags"
+                      class="tag-ramco">
+            <tag-input-dropdown
+                [appendToBody]="true"
+                [showDropdownIfEmpty]="true"
+                [autocompleteItems]="tagItems"
+                [identifyBy]="'title'"
+                [displayBy]="'title'">
+            </tag-input-dropdown>
+          </tag-input>
+        </div>
+      </div>
+
+      <!-- Submit -->
+      <div class="form-group">
+        <button class="btn btn-danger btn-block btn-lg">Create Document</button>
+      </div>
+
+    </form>
+
+  </div>
+
+</div></tab>
+
+  <tab
+    tab2
+    heading="Documents List"
+    id="second"
+    select="!disableSwitching && second.active = true"
+    #second
+    ><app-documents-list></app-documents-list></tab>
+</tabset>

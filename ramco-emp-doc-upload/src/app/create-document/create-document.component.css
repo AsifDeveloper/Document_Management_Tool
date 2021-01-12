@@ -1,0 +1,16 @@
+.container{
+    background:#36abe9;
+    padding: 40px;
+    max-width: 600px;
+    margin: 40px auto;
+    border-radius: 4px;
+    box-shadow: 0 4px 10px 4px rgba(19, 35, 47, 0.3);
+}
+
+.tag-ramco .ng2-tag-input__text-input .ng-pristine .ng-valid .ng-touched {
+    padding: .5rem 1rem !important;
+    font-size: 1.25rem !important;
+    line-height: 1.5 !important;
+    border-radius: .3rem !important;
+    width: 100% !important;
+}
